@@ -1,0 +1,167 @@
+.header {
+    background: #f5f5f5;
+    padding: 20px;
+    border-bottom: 1.75px solid gray;
+    text-align: center;
+}
+
+.headerText {
+    margin: auto;
+    width: auto;
+    
+}
+
+.heading1 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.heading2 {
+    font-size: 18px;
+    font-family: arial;
+}
+
+.heading3 {
+    font-size: 16px;
+    font-family: arial;
+    font-weight: 500;
+}
+
+.body {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+}
+
+.displayUserInput {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 28px;
+}
+
+.instructionBox {
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    margin:0 auto;
+    width:fit-content
+}
+
+.errorHandler {
+    color: red;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.btnSubmit {
+    width: 200px;
+    margin-bottom: 20px;
+    height: 40px;
+    margin-top: 20px;
+}
+
+.colorBox {
+    margin: auto;
+    padding: 20px;
+}
+
+.displayColor {
+    margin: auto;
+    width: 300px;
+    height: 300px;
+    border: 1.99px solid black;
+    border-radius: 12px;
+}
+
+.colorInfo {
+    display: grid;
+    align-content: center;
+    column-gap: 20px;
+    columns: 3;
+    margin-top:20px;
+    margin-bottom: 20px;
+    margin: auto;
+    width: 500px;
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-bottom: 0.75px solid gray;
+}
+
+.container {
+    align-content: center;
+    margin: auto;
+    width: fit-content;
+}
+
+.gridContainer {
+    display: grid;
+    columns: 2;
+    column-gap: 50px;
+}
+
+.infoContainer {
+    display: grid;
+    columns: 4;
+    column-gap: 5px;
+}
+
+.leftSide {
+    grid-row: 1 / span 1;
+    text-align: center;
+    align-content: center;
+    width: fit-content;
+    margin-top: 20px;
+}
+
+.rightSide {
+    grid-row: 1 / span 1;
+    text-align: start;
+    align-content: start;
+    width: fit-content;
+    margin-top: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    border: 2px solid rgb(140 140 140);
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+caption {
+    caption-side: top;
+    padding: 10px;
+    font-weight: bold;
+}
+
+thead, tfoot {
+    background-color: rgb(160 160 160);
+}
+
+th,
+td {
+  border: 1px solid rgb(160 160 160);
+  padding: 8px 10px;
+}
+
+td:last-of-type {
+  text-align: center;
+}
+
+tbody > tr:nth-of-type(even) {
+  background-color: rgb(237 238 242);
+}
+
+tfoot th {
+  text-align: right;
+}
+
+tfoot td {
+  font-weight: bold;
+}
+
+
+
+

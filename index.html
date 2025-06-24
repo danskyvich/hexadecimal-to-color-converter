@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hexadecimal Color Converter</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="logic.js"></script>
+  </head>
+  <body>
+    <div class="header">
+      <div class="headerText">
+        <h1>Hexadecimal Color Converter</h1>
+        <p class="heading2">
+          Input a hexadecimal value to see its color equivalent!
+        </p>
+      </div>
+      <div class="instructionBox">
+        <p>
+          Requirements: <br />1. The input should start with the symbol '#'.
+          <br />2. The input should be 6 characters long (not including the
+          number sign)
+        </p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="gridContainer">
+        <div class="leftSide">
+        <div>
+          <form action="/JavaScript/index.html" method="GET" id="hexForm">
+            <label for="inputBox">Enter a hexadecimal value: <br /><br /></label>
+            <input
+              type="text"
+              name="inputBox"
+              id="inputBox"
+              style="width: 245px; height: 25px"
+              required
+            />
+
+            <br />
+
+            <button class="btnSubmit" type="submit">See the color!</button>
+            <br />
+            <div class="errorHandler" id="errorHandler"></div>
+            </form>
+            <div class="colorBox">
+              <div class="displayColor" id="displayColor"></div>
+            </div>
+          <div class="displayUserInput" id="displayUserInput"></div>
+          </form>
+        </div>
+
+        </div>
+        <div class="rightSide">
+          <div class="infoContainer">
+            <table>
+              <caption><h3>Color details</h3></caption>
+              <thead>
+                <tr>
+                  <th scope="col">--</th>
+                  <th scope="col">Hexadecimal</th>
+                  <th scope="col">Decimal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Red</th>
+                  <td><p id="redHex"></p></td>
+                  <td><b><p id="redDec"></p></b>/255</td>
+                </tr>
+                <tr>
+                  <th scope="row">Green</th>
+                  <td><p id="greenHex"></p></td>
+                  <td><b><p id="greenDec"></p></b>/255</td>
+                </tr>
+                <tr>
+                  <th scope="row">Blue</th>
+                  <td><p id="blueHex"></p></td>
+                  <td><b><p id="blueDec"></p></b>/255</td>
+                </tr>
+                <tr>
+                  <th scope="row" colspan="3">
+                    <p id="rgbSummary"></p>
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          </div> 
+        </div>
+      </div> 
+    </div>
+  </body>
+</html>
