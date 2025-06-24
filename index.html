@@ -25,31 +25,27 @@
     <div class="container">
       <div class="gridContainer">
         <div class="leftSide">
-        <div>
-          <form action="/JavaScript/index.html" method="GET" id="hexForm">
+          <div>
             <label for="inputBox">Enter a hexadecimal value: <br /><br /></label>
-            <input
-              type="text"
-              name="inputBox"
-              id="inputBox"
-              style="width: 245px; height: 25px"
-              required
-            />
+              <input
+                type="text"
+                name="inputBox"
+                id="inputBox"
+                style="width: 245px; height: 25px"
+                required
+              />
 
-            <br />
+              <br />
 
-            <button class="btnSubmit" type="submit">See the color!</button>
-            <br />
-            <div class="errorHandler" id="errorHandler"></div>
-            </form>
-            <div class="colorBox">
-              <div class="displayColor" id="displayColor"></div>
+              <button class="btnSubmit" id="btnSubmit" type="button">See the color!</button>
+              <br />
+              <div class="errorHandler" id="errorHandler"></div>
+                <div class="colorBox">
+                  <div class="displayColor" id="displayColor"></div>
+                </div>
+              <div class="displayUserInput" id="displayUserInput"></div>
             </div>
-          <div class="displayUserInput" id="displayUserInput"></div>
-          </form>
-        </div>
-
-        </div>
+          </div>
         <div class="rightSide">
           <div class="infoContainer">
             <table>

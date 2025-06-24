@@ -1,13 +1,12 @@
 const userInput = document.getElementById('inputBox')
 const button = document.getElementById('btnSubmit')
-const form = document.getElementById('hexForm')
 const errorHandler = document.getElementById('errorHandler')
 const regex = "^#([A-Fa-f0-9]{6})$"
 const display = document.getElementById('displayUserInput')
 const displayColor = document.getElementById('displayColor')
 let isInputValid = false;
 
-form.addEventListener('submit', (e) => {
+button.addEventListener('click', (e) => {
     //store all our error messages in this array
     let errorMessages = []
 
