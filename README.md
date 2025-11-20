@@ -17,4 +17,3 @@ After the user had inputted a valid hexadecimal input in the textbox, the input 
 **Languages and Tools**
 1. HTML
 2. CSS
-3. JavaScript
