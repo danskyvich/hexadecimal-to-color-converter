@@ -12,7 +12,7 @@ GitHub Pages currently hosts this repository. Simply navigate to https://danskyv
 **Code Editor**
 1. Visual Studio Code 2022
 
-** 🔨Languages and Tools**
+##🔨Languages and Tools##
 1. HTML
 2. CSS
 3. JavaScript
