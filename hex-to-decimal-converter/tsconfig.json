@@ -7,5 +7,13 @@
   "compilerOptions": {
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./src/*"],
+      "@/components/*": ["./src/components/"],
+      "@/lib/*": ["./src/libs/*"],
+      "@/hooks/*": ["./src/hooks/*"],
+      "@/lib/utils": ["./src/libs/utils"]
+    }
   }
 }

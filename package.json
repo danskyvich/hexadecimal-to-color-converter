@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
     "react": "^19.2.4"
   }
 }
