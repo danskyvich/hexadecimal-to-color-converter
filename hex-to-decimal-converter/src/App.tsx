@@ -1,17 +1,44 @@
 import { InputGroup, InputGroupAddon, InputGroupInput } from "./components/input-group";
-import { Field, FieldError, FieldGroup, FieldLabel } from "./components/field";
+import { Field, FieldError, FieldLabel } from "./components/field";
 import { Card, CardContent, CardHeader } from "./components/card";
 import { Separator } from "./components/separator";
 import { ArrowDownToDotIcon } from "lucide-react";
 import { Button } from "./components/button";
 import { Controller, useForm } from 'react-hook-form'
+import * as z from 'zod'
+import { zodResolver } from "@hookform/resolvers/zod/src/zod.js";
+import { useState } from "react";
+
+
+const formSchema = z.object({
+  hexadecimal: z
+    .string()
+    .min(7, "Input must be equal to 7 characters (including the # )")
+    .max(7, "Input must be equal to 7 characters (including the # )"),
+});
 
 function MainPage() {
 
-  const { register, handleSubmit, formState: { errors }, } = useForm<FormInputs>();
+  const[values, setValues] = useState({r: '', g: '', b: '', rNum: 0, gNum: 0, bNum: 0, rgb: ''})
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      hexadecimal: '#000000'
+    },
+  })
 
-  const onSubmit: SubmitHandler<FormInputs> = (data) => {
-    console.log(data)
+  function onSubmit(data: z.infer<typeof formSchema>) {
+    //modify data here
+    const hexInput = JSON.stringify(data);
+    setValues.arguments(
+      hexInput.substring(1, 3),
+      hexInput.substring(3, 5),
+      hexInput.substring(5, 7),
+      parseInt(hexInput.substring(1, 3), 16),
+      parseInt(hexInput.substring(3, 5), 16),
+      parseInt(hexInput.substring(5, 7), 16),
+      `rgb(${parseInt(hexInput.substring(1, 3), 16)},${parseInt(hexInput.substring(3, 5), 16)}, ${parseInt(hexInput.substring(5, 7), 16)})`,
+    );
   }
 
   return (
@@ -60,13 +87,42 @@ function MainPage() {
             {/**Color display */}
             <div
               id="colorDisplay"
-              className={`w-[10dvw] h-[20dvh] ${color} border-2 border-stone-400 rounded-2xl shadow-xs mb-5`}
+              className={`w-[10dvw] h-[20dvh] ${values.rgb} border-2 border-stone-400 rounded-2xl shadow-xs mb-5`}
             />
 
             {/** FORM  */}
-            <form id="form-hex-to-dec" onSubmit={form.handleSubmit(onSubmit)}>
-              {/**Input */}
-              
+            <form onSubmit={form.handleSubmit(onSubmit)}>
+              <Controller
+              name='hexadecimal'
+              control={form.control}
+              render={({ field, fieldState }) => (
+                <Field
+                  data-invalid={fieldState.invalid}
+                >
+                  <FieldLabel htmlFor={field.name}>Enter a hexadecimal input</FieldLabel>
+                  <InputGroupAddon align={'inline-start'}>
+                    <ArrowDownToDotIcon/>
+                  </InputGroupAddon>
+                  <InputGroup>
+                    <InputGroupInput
+                    {...field}
+                    id={field.name}
+                    aria-invalid={fieldState.invalid}
+                    placeholder='Enter your input here...'
+                    autoComplete='off'
+                    />
+                  </InputGroup>
+                  {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
+                  <Button
+                    variant='default'
+                  >
+                    <p>Submit</p>
+                  </Button>
+                </Field>
+              )}
+            >
+
+            </Controller>
             </form>
           </Field>
 
@@ -83,31 +139,31 @@ function MainPage() {
               Red (r)
             </div>
             <div className="row-start-2 border-2 px-2 content-center rounded-xl">
-              {r}
+              {values.r}
             </div>
             <div className="row-start-2 border-2 px-2 content-center rounded-xl">
-              {rNum}/255
+              {values.rNum}/255
             </div>
             <div className="row-start-3 border-2 px-2 content-center rounded-xl">
               Green (g)
             </div>
             <div className="row-start-3 border-2 px-2 content-center rounded-xl">
-              {g}
+              {values.g}
             </div>
             <div className="row-start-3 border-2 px-2 content-center rounded-xl">
-              {gNum}/255
+              {values.gNum}/255
             </div>
             <div className="row-start-4 border-2 px-2 content-center rounded-xl">
               Blue (b)
             </div>
             <div className="row-start-4 border-2 px-2 content-center rounded-xl">
-              {b}
+              {values.b}
             </div>
             <div className="row-start-4 border-2 px-2 content-center rounded-xl">
-              {bNum}/255
+              {values.bNum}/255
             </div>
             <div className="col-span-3 row-start-5 text-center border-2 px-2 content-center rounded-xl">
-              {rgb}
+              {values.rgb}
             </div>
           </div>
         </div>

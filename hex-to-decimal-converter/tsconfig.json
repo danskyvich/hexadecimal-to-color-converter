@@ -14,6 +14,7 @@
       "@/lib/*": ["./src/libs/*"],
       "@/hooks/*": ["./src/hooks/*"],
       "@/lib/utils": ["./src/libs/utils"]
-    }
+    },
+    "moduleResolution": "node16"
   }
 }
