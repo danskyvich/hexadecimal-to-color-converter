@@ -12,9 +12,9 @@ import { useState } from "react";
 
 const formSchema = z.object({
   hexadecimal: z
-    .string()
-    .min(7, "Input must be equal to 7 characters (including the # )")
-    .max(7, "Input must be equal to 7 characters (including the # )"),
+    .string().length(7).startsWith('#')
+    .min(7, "Input must be equal to 7 characters")
+    .max(7, "Input must be equal to 7 characters")
 });
 
 function MainPage() {
@@ -23,22 +23,31 @@ function MainPage() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      hexadecimal: '#000000'
+      hexadecimal: '#ffffff'
     },
   })
 
   function onSubmit(data: z.infer<typeof formSchema>) {
     //modify data here
-    const hexInput = JSON.stringify(data);
-    setValues.arguments(
-      hexInput.substring(1, 3),
-      hexInput.substring(3, 5),
-      hexInput.substring(5, 7),
-      parseInt(hexInput.substring(1, 3), 16),
-      parseInt(hexInput.substring(3, 5), 16),
-      parseInt(hexInput.substring(5, 7), 16),
-      `rgb(${parseInt(hexInput.substring(1, 3), 16)},${parseInt(hexInput.substring(3, 5), 16)}, ${parseInt(hexInput.substring(5, 7), 16)})`,
-    );
+    const hexInput = data.hexadecimal;
+    
+    const r = hexInput.substring(1,3);
+    const g = hexInput.substring(3,5);
+    const b = hexInput.substring(5,7)
+
+    const rNum = parseInt(r,16)
+    const gNum = parseInt(g, 16);
+    const bNum = parseInt(b, 16);
+
+    setValues({
+      r,
+      g,
+      b,
+      rNum,
+      gNum,
+      bNum,
+      rgb: `rgb(${rNum},${gNum},${bNum})`
+    })
   }
 
   return (
@@ -87,42 +96,44 @@ function MainPage() {
             {/**Color display */}
             <div
               id="colorDisplay"
-              className={`w-[10dvw] h-[20dvh] ${values.rgb} border-2 border-stone-400 rounded-2xl shadow-xs mb-5`}
+              className={`w-[10dvw] h-[20dvh] border-2 border-stone-400 rounded-2xl shadow-xs mb-5`}
+              style={{ backgroundColor: values.rgb}}
             />
 
             {/** FORM  */}
             <form onSubmit={form.handleSubmit(onSubmit)}>
               <Controller
-              name='hexadecimal'
-              control={form.control}
-              render={({ field, fieldState }) => (
-                <Field
-                  data-invalid={fieldState.invalid}
-                >
-                  <FieldLabel htmlFor={field.name}>Enter a hexadecimal input</FieldLabel>
-                  <InputGroupAddon align={'inline-start'}>
-                    <ArrowDownToDotIcon/>
-                  </InputGroupAddon>
-                  <InputGroup>
-                    <InputGroupInput
-                    {...field}
-                    id={field.name}
-                    aria-invalid={fieldState.invalid}
-                    placeholder='Enter your input here...'
-                    autoComplete='off'
-                    />
-                  </InputGroup>
-                  {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-                  <Button
-                    variant='default'
-                  >
-                    <p>Submit</p>
-                  </Button>
-                </Field>
-              )}
-            >
-
-            </Controller>
+                name="hexadecimal"
+                control={form.control}
+                render={({ field, fieldState }) => (
+                  <Field data-invalid={fieldState.invalid}>
+                    <FieldLabel htmlFor={field.name}>
+                      Enter a hexadecimal input
+                    </FieldLabel>
+                    <InputGroup>
+                      <InputGroupAddon align={"inline-start"}>
+                        <ArrowDownToDotIcon />
+                      </InputGroupAddon>
+                      <InputGroupInput
+                        {...field}
+                        id={field.name}
+                        aria-invalid={fieldState.invalid}
+                        placeholder="Enter your input here..."
+                        autoComplete="off"
+                      />
+                    </InputGroup>
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
+                    <Button
+                      variant="default"
+                      className="hover:cursor-pointer hover:bg-stone-700 hover:shadow-2xl"
+                    >
+                      <p>Submit</p>
+                    </Button>
+                  </Field>
+                )}
+              ></Controller>
             </form>
           </Field>
 
