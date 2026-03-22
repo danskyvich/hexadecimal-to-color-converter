@@ -1,0 +1,60 @@
+# .github/workflows/ci-cd.yml
+
+name: CI/CD Pipeline for Vite App
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24' # Use a specific, current Node.js version
+          cache: 'npm' # Cache dependencies to speed up subsequent runs
+
+      - name: Install Dependencies
+        run: npm ci # Use npm ci for CI environments
+
+      - name: Run Tests
+        run: npm test --if-present # Runs tests if a "test" script is defined in package.json
+
+      - name: Build Project
+        run: npm run build # Creates the production build in the 'dist' directory
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: dist
+          retention-days: 1 # Optional: configure artifact retention
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    # Only run the deploy job on pushes to the main branch
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build
+          path: dist
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4 # A popular action for deploying to GitHub Pages
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
