@@ -51,11 +51,12 @@ function MainPage() {
   }
 
   return (
-    <section className="flex flex-col w-dvw h-dvh bg-stone-100 m-0 p-0">
-      <header className="flex flex-0 w-full h-fit px-20 py-5 gap-5 bg-stone-800">
-        <img src="/favicon.svg" alt="logo" className="w-20 h-20 " />
+    <section className="flex flex-col w-full h-dvh m-0 p-0">
+      {/**Header */}
+      <header className="flex flex-1 w-full h-fit px-5 md:px-20 py-5 gap-5 bg-stone-800">
+        <img src="/favicon.svg" alt="logo" className="sm:w-20 w-15 h-auto " />
         <div className="flex flex-1 flex-col w-full h-fit">
-          <p className="font-semibold text-2xl text-white">
+          <p className="font-semibold text-x sm:text-2xl text-white">
             Hexadecimal to Decimal Converter
           </p>
           <p className="text-white">
@@ -64,14 +65,13 @@ function MainPage() {
         </div>
       </header>
 
-      <section className="flex flex-8 w-full h-auto px-20 py-3 gap-20">
+      {/**Main content */}
+      <section className="flex flex-8 flex-col items-center pb-10 sm:flex-row w-full h-auto px-0 md:px-10 py-3 gap-10 sm:gap-5 md:gap-20">
         {/**Left side */}
-        <div className="flex flex-1 flex-col w-[50dvw] h-full pl-[10dvw] items-end">
+        <div className="flex flex-1 flex-col w-[50dvw] h-full sm:pl-[10dvw] items-end">
           <div className="flex flex-1 h-auto w-full" />
-          <Field
-            className="flex flex-1 h-auto w-full max-w-sm"
-            orientation={"vertical"}
-          >
+          <Field className="flex flex-1 h-auto w-full" orientation={"vertical"}>
+            {/**Instructions */}
             <Card>
               <CardHeader>
                 <p className="text-xl">Instructions</p>
@@ -97,7 +97,7 @@ function MainPage() {
             <div
               id="colorDisplay"
               className={`w-[10dvw] h-[20dvh] border-2 border-stone-400 rounded-2xl shadow-xs mb-5`}
-              style={{ backgroundColor: values.rgb}}
+              style={{ backgroundColor: values.rgb }}
             />
 
             {/** FORM  */}
@@ -141,44 +141,48 @@ function MainPage() {
         </div>
 
         {/**Right side */}
-        <div className="flex flex-1 flex-col w-[50dvw] h-full items-start pr-[10dvw] justify-center">
-          <div className="grid grid-cols-3 grid-rows-5 gap-4 divide-solid border-2 p-2 item rounded-xl">
-            <div className="col-span-3 text-center font-bold text-stone-800 border-2 p-2 w-full rounded-xl">
+        <div className="flex flex-1 flex-col w-[50dvw] h-full items-start p-0 sm:pr-[10dvw] justify-center">
+          {/**Grid container */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 grid-rows-11 sm:grid-rows-5 gap-2 sm:gap-4 divide-solid border-2 p-2 item rounded-xl w-full sm:w-fit">
+            {/**Rows */}
+            <div className="sm:col-span-3 sm:text-center font-bold text-stone-800 border-2 p-2 w-full rounded-xl">
               RGB colors
             </div>
-            <div className="row-start-2 border-2 px-2 py-5 content-center rounded-xl">
+            <div className="sm:row-start-2 border-2 px-2 sm:py-5 content-center rounded-xl">
               Red (r)
             </div>
-            <div className="row-start-2 border-2 px-2 content-center rounded-xl">
+            <div className="sm:row-start-2 border-2 px-2 content-center rounded-xl">
               {values.r}
             </div>
-            <div className="row-start-2 border-2 px-2 content-center rounded-xl">
+            <div className="sm:row-start-2 border-2 px-2 content-center rounded-xl">
               {values.rNum}/255
             </div>
-            <div className="row-start-3 border-2 px-2 content-center rounded-xl">
+            <div className="sm:row-start-3 border-2 px-2 content-center rounded-xl">
               Green (g)
             </div>
-            <div className="row-start-3 border-2 px-2 content-center rounded-xl">
+            <div className="sm:row-start-3 border-2 px-2 content-center rounded-xl">
               {values.g}
             </div>
-            <div className="row-start-3 border-2 px-2 content-center rounded-xl">
+            <div className="sm:row-start-3 border-2 px-2 content-center rounded-xl">
               {values.gNum}/255
             </div>
-            <div className="row-start-4 border-2 px-2 content-center rounded-xl">
+            <div className="sm:row-start-4 border-2 px-2 content-center rounded-xl">
               Blue (b)
             </div>
-            <div className="row-start-4 border-2 px-2 content-center rounded-xl">
+            <div className="sm:row-start-4 border-2 px-2 content-center rounded-xl">
               {values.b}
             </div>
-            <div className="row-start-4 border-2 px-2 content-center rounded-xl">
+            <div className="sm:row-start-4 border-2 px-2 content-center rounded-xl">
               {values.bNum}/255
             </div>
-            <div className="col-span-3 row-start-5 text-center border-2 px-2 content-center rounded-xl">
+            <div className="sm:col-span-3 row-start-5 italic font-semibold sm:text-center border-2 px-2 content-center rounded-xl">
               {values.rgb}
             </div>
           </div>
         </div>
       </section>
+
+      {/**Footer */}
       <footer className="flex flex-1 flex-col w-full h-[10%] bg-stone-600 text-center py-[2dvh] justify-center text-white">
         <p>Made w/ luv @ 2025</p>
         <a
