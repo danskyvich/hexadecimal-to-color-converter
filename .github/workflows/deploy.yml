@@ -58,3 +58,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+    permissions:
+        contents: read
+        pages: write
+        id-token: write
