@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://danskyvich.github.io/copify",
+  "homepage": "https://danskyvich.github.io/hexadecimal-to-decimal-converter",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
