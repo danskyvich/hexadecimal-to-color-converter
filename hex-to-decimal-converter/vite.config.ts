@@ -12,5 +12,5 @@ export default defineConfig({
     }),
     tailwindcss(),
   ],
-  base: "/copify/",
+  base: "/hexadecimal-to-decimal-converter/",
 })
