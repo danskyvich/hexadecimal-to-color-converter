@@ -1,9 +1,9 @@
 {
   "name": "hex-to-decimal-converter",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
-  "homepage": "https://danskyvich.github.io/hexadecimal-to-decimal-converter",
+  "homepage": "https://danskyvich.github.io/hexadecimal-to-decimal-converter/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
